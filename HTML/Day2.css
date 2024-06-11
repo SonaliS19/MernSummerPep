@@ -1,0 +1,108 @@
+/* em: depends on the font size of parent element */
+
+/* p{
+  color: brown;
+} */
+
+/* #root{
+  background-color: rgb(10, 10, 57) ;
+  color: rgb(212, 214, 216);
+  padding: 12px;
+  border: 2px solid rgb(224, 39, 39);
+  margin: 12px;
+  
+} */
+
+*{
+  margin: 0;
+  padding: 0;
+  border: 2px solid black;
+  box-sizing: border-box;
+}
+
+/* div{
+  text-align: center;
+  background-color: rgb(135, 222, 171);
+  width: fit-content;
+  /* font-size: 2em; */
+  /* margin: auto;
+}  */
+
+/* p{
+  background-color: brown;
+  /* font-size: 4em; */
+  /* width: 10em; 
+  width: 40%;
+}  */
+
+/* div.d2{
+  background-color: rgb(157, 135, 222);
+}  */
+
+
+/* .btn{
+  display: block;
+  text-align: center;
+  background-color: rgb(135, 222, 171);
+  width: fit-content;
+  margin:10px auto;
+  font-size: 16px;
+  padding: 0.4em 1rem;
+  border-radius: 0.5em;
+  border: none;
+
+}
+
+.big{
+  font-size: 24px;
+
+}
+
+.small{
+  font-size: 12px;
+} */
+
+
+
+/* REM--------------------------------- */
+
+/* html{
+  font-size: 20px;
+
+}
+
+div{
+  font-size: 30px;
+}
+p{
+  font-size: 2rem;
+} */
+
+/* VIEW HEIGHT-------------------------------------- */
+
+/* button{
+  background-color: blue;
+  width: 100%;
+  height: 100vh;
+} */
+
+
+/* --------------------------------- */
+
+h3{
+  color: brown;
+}
+
+/* decendent */
+ol h3{
+  color: blue;
+}
+/* child */
+li>h3{
+  color: rgb(165, 42, 138);
+}
+
+/* siblings */
+h3+li{
+  color: rgb(222, 107, 75);
+}

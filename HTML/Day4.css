@@ -1,0 +1,46 @@
+/* //MEDIA PROPERTY */
+
+/* *{
+  margin: 0;
+  padding: 0;
+}
+
+.container{
+  background-color: blueviolet;
+  padding: 40px;
+}
+
+.div1{
+  background-color: azure;
+  padding: 25px;
+}
+
+@media(width<=800px){
+  .container{
+    background-color: brown;
+  }
+} */
+
+
+
+/* //Position */
+
+*{
+  margin: 0;
+  padding: 0;
+}
+
+.container{
+  background-color: blueviolet;
+  height: 500px;
+  margin: 100px;
+}
+
+.div1{
+  background-color: rgb(227, 81, 166);
+  height: 40px;
+  width: 40px;
+  top: 50px;
+  position: sticky;
+}
+

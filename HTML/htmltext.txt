@@ -1,0 +1,29 @@
+<!DOCTYPE html> //DOC TYPE OF HTML 
+IT TELLS THAT WHICH VERSION OF BROWSER WE ARE USING
+//American Standard Code for Information Interchange[ASCII]-7bits
+//sementic and unsemantic tags
+//block level element(whole view, strats in a new line) & inline level element(like wrap-content)
+//utf-8(having veriable length)
+//i,b-unsementic , em/strong-sementic
+
+//------------------------------------------------------------------
+
+ <video src="videodemo.mp4" height="200" width="200" controls autoplay muted></video>
+ //autoplay only work with muted mostly
+ 
+
+ //Flexbox--------------------------------------------------------
+ /* 
+.search{
+  flex-grow: 1;
+  flex-shrink: 1;
+} */
+
+/* .child2 {
+  flex-grow: 2;
+} */
+
+
+//-----------------------------------------
+absolute: globally(0,0)
+relative: with respect to original position

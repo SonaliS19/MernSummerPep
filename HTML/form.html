@@ -1,0 +1,48 @@
+<!-- DAY2 -->
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+  <!-- <style>
+    form{
+     margin-top: 20;
+     padding: 10 10 10 10;
+    }
+  </style> -->
+  <body>
+    <form action="./contact.html" method="get">
+      <label for="userdetails">username:</label>
+      <!-- autocomplete="off" uses for not getting suggestions in input tag -->
+      <input type="text" placeholder="enter your name" name="username" autocomplete="off"><br><br>
+      <label for="userdetails">age:</label>
+      <input type="number" value="18" placeholder="age" required><br><br>
+
+      <!-- value can be use to give name to buttons and all and defult value to inputs -->
+      <label for="gender">gender : </label><br><br>
+      <!-- The for attribute of the <label> tag should be equal to the id attribute of the <input> element to bind them together. -->
+      <label for="m1">male</label>
+      <input type="radio" value="male" name="gender" id="m1"><br>
+      <label for="f1">female</label>
+      <input type="radio" value="female" name="gender" id="f1"><br><br>
+
+      <label for="gender">Hobbies: </label><br><br>
+      <label for="t1">podcast</label>
+      <input type="checkbox" value="male" name="gender" id="tenth"><br>
+      <label for="t2">video game</label>
+      <input type="checkbox" value="female" name="gender" id="t2"><br><br>
+      <label for="t2">address: </label><br>
+      <textarea name="address" id="" placeholder="enter your address: "></textarea><br><br>
+      <select name="city" multiple>
+        <option value="Delhi">Delhi</option>
+        <option value="Pune">Pune</option>
+        <option value="Mumbai">Mumbai</option>
+      </select><br><br>
+      <input type="submit" value="Done">
+      <input type="reset">
+
+      </form>
+  </body>
+  </html>
