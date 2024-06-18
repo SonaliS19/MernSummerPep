@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section>
+        <h4>JS DOM</h4>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde perferendis, consequuntur, cumque culpa impedit, at voluptates maiores accusantium alias tempore expedita? Earum quod reiciendis praesentium harum porro qui, expedita quas!</p>
+    </section>
+    <section>
+        <h4>JS DOM</h4>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde perferendis, consequuntur, cumque culpa impedit, at voluptates maiores accusantium alias tempore expedita? Earum quod reiciendis praesentium harum porro qui, expedita quas!</p>
+    </section>
+    <div onclick="printHello()">
+        <h4>JS DOM</h4>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde perferendis, consequuntur, cumque culpa impedit, at voluptates maiores accusantium alias tempore expedita? Earum quod reiciendis praesentium harum porro qui, expedita quas!</p>
+    </div>
+
+    <!-- Event listeners -->
+    <input onclick="inputClicked(event)"><br><br>
+    <!-- When just clicked -->
+    <input onkeydown="inputKeydown(event)"><br><br>
+    <!-- When enter from keyboard. Keydown fire the key prssed from keyboard then print next time. -->
+    <input onkeyup="inputKeyup(event)"><br><br>
+    <!-- When enter from keyboard. In keyup it will works on key up. -->
+    <input onchange="inputChanged(event)"><br><br> 
+    <!-- When clicked outside -->
+
+    <h2>Form</h2>
+    <form onsubmit="handleSubmit(event)">
+        <input onchange="handleUserName(event)" type="text" name="userName"><br><br>
+        <input onchange="handleUserName(event)" type="text" name="userAge"><br><br>
+        <button>Submit Details</button><br><br>
+    </form>
+
+    <div id="root">
+
+    </div>
+
+    <h2>CallBacks</h2><br>
+    <button onclick="sum(10, 20)">ADD</button>
+    <button onclick="mul(10, 20)">MUL</button>
+
+    <h4 id="root1"></h4>
+
+    <script src="script.js"></script>
+</body>
+</html>

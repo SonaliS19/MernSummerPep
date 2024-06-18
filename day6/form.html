@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <link rel="stylesheet" href="form.css">
+</head>
+
+<body>
+    <div id="root">
+        <form onsubmit="handleSubmit(event)">
+            <h2>Create an Account</h2>
+            <label for="name">Full Name</label>
+            <input type="text" id="name">
+
+            <label for="email">Email</label>
+            <input type="email" id="email">
+
+            <label for="password">Password</label>
+            <input type="password" id="password">
+
+            <label for="number">Phone number</label>
+            <input type="tel" id="number">
+
+            <button>Sign Up</button>
+            <p>OR</p>
+            <button id="google">
+                <a id="link" href="https://www.google.com">Sign Up with google</a>
+            </button>
+            <span>Already have an Account? <a href=>Login</a></span>
+        </form>
+    </div>
+    
+    <script src="form.js"></script>
+</body>
+
+</html>
