@@ -1,74 +1,103 @@
-console.log("Api fetching");
+//PROMISES 
 
-const promise = fetch("https://dummyjson.com/products");
-promise
-  .then((res) => {
-    const promise2 = res.json();
-    promise2.then((data) => {
-      console.log(data);
-      //calling the data on ui
-      CreateUI(data);
-    });
-  })
-  .catch((err) => {
-    console.log("Error 404\n", err);
-  });
+// console.log('start')
+// const pr = new Promise((resolve,reject)=>{
+//   const flag = true;  //let's take true by defult
+//   if(flag===true){
+//     setTimeout(()=>{
+//       resolve(["apple","mango"]);
+//     },1000);
+//   }
+//     else{
+//       reject("Promise is rejected");
+//       }
+// });
 
-const main = document.getElementById("root");
+// console.log('mid')
 
-
-
-//json will call this function and this function will render the data
-function CreateUI(data) {
-
-  //Clear the data of inner html
-  main.innerHTML = ''; //empty the main
-  const products = data.products;
-
-  for (let i = 0; i < products.length; i++) {
-    const newCard = document.createElement("div");
-
-    //INNER HTML METHOD;
-
-    newCard.innerHTML=`
-    <div> 
-      <h3>${products[i].title}</h3>
-      <img src="${products[i].thumbnail}">
-      <p>Price: ${products[i].price}</p>
-    </div>
-    `;
+// setTimeout(()=>{
+//   console.log('done')
+// },4000);
 
 
-    //INNER Text METHOD;--------------------------------------------------------------------------------------
+// pr.then(()=>{
+//   console.log('+++');
+// }).catch(err=>{
+//   console.log(err);
+// })
 
-    // const title = document.createElement("h3");
-    // title.innerText = products[i].title;
-    // newCard.appendChild(title);
-  
+// console.log('end')
 
-    // const img = document.createElement('img');
-    // img.setAttribute('src',products[i].thumbnail);
-    // newCard.appendChild(img);
 
-    // const price = document.createElement('price')
-    // price.innerText = products[i].price;
-    // newCard.appendChild(price);
 
-    main.appendChild(newCard);
 
+//--------------------------------------------------------------------
+//SETTIMEOUT(once), SetInterval()
+
+// const cb = ()=>{
+//   console.log('callback function');
+// };
+// const time = 1000;
+// setTimeout(cb,time);
+
+
+// let cnt =0;
+// let id;
+
+// const cb = ()=>{
+//   cnt++;
+//   console.log('callback function',cnt);
+//   if(cnt==4){
+//     clearInterval(id);
+//   }
+// };
+// const time = 1000;
+// id=setInterval(cb,time);
+
+
+//ARRAY FUNCTIONS-------------------------------------------------------------------
+const arr =["A","B","C", "D"]
+//FORECHA(DOES NOT RETURN ANYTHING) AND MAP(IT RETURNS)--------------------------------------------
+const res1=arr.forEach((a,b,c)=>{
+  console.log(a,b,c);
+  return "foreach OK"
+})
+
+const res2=arr.map((element,b,c)=>{
+  // console.log(a,b,c);
+  return "map OK"
+})
+
+console.log(res1);
+console.log(res2);
+
+if(arr==res2){
+  console.log("same array");
+}
+else{
+  console.log("different array");
+}
+
+
+//FILTER(work on given condition: work for only true value)-------------------------------------------------------
+const arr2 = ["A","BD","CD","D"]
+const res3=arr2.filter((a,b,c)=>{  //a->element, b->index, c-> array
+  // console.log(a,b,c);
+  // return "filter OK"
+
+  // if(a.length==1){
+  //   return true;
+  // }
+  // else{
+  //   return false;
+  // }
+
+  if(b%2==0){
+    return true;
   }
-}
+  else{
+    return false;
+  }
+})
 
-
-function searchProducts(e){
-  // const searchInput = document.getElementById('search');
-  // console.log(e.target.value)
-  const searchText = e.target.value;
-  const pr = fetch(`https://dummyjson.com/products/search?q=${searchText}`);
-  pr.then((res)=>{
-    const pr2=res.json();
-    pr2.then((data)=>{
-      CreateUI(data);
-      });
-  });
-}
+console.log(res3);

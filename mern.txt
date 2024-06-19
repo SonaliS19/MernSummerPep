@@ -15,3 +15,14 @@ Non-Primitive: object(fun,array),mutable
 NOTE:[
   //we can only use string as a key in json,
 ]
+
+
+
+//DAY8 PROMISE------------------------------------------------------------
+Promise is an object which represents eventual completion or failure of an asynchronous operation and its resulting value.
+
+#state of promises
+1-pending: initial state
+2-settaled: 
+2.1-fulfilled: operation completed successfully
+2.2-rejected: operation failed
