@@ -1,11 +1,13 @@
 // const sum = function calsum(){
 //   let sum = 0;
+
 //   for(let i = 0; i < arguments.length; i++){
 //     sum += arguments[i];
 //     }
 //     return sum;
 // }
-// console.log(sum(1,2,3,4,5)); //output: 15
+// console.log(sum(1,2,3,4,5)); 
+
 
 
 // function sum(a=0,b=0){
@@ -34,19 +36,36 @@
 
 
 
+//TASK----
 
+function calc(s, ...arr){
+  let ans = 0;
+  if(s=='sum'){
+    ans = arr.reduce((acc,elem)=>acc+elem);
 
+  }
+  else{
+    ans=arr.reduce((acc,elem)=>acc*elem);
+
+  }
+  return ans;
+}
+
+const a1 = calc('sum', 10, 20,30)
 
 //--------------------------------------------------------------------------------------------------------------------------
 
-const figlet = require("figlet");
+// const figlet = require("figlet");
 
-figlet("Sonali",(err,data)=>{
-  if(err)
-    {
-      console.log(err)
-    }
-  else{
-    console.log(data)
-  }
-})
+// figlet("Sonali",(err,data)=>{
+//   if(err)
+//     {
+//       console.log(err)
+//     }
+//   else{
+//     console.log(data)
+//   }
+// })
+
+
+
