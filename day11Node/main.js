@@ -12,14 +12,14 @@ const app = http.createServer(async (req, res) => {
     });
     // const route = req.url;
     const {query, pathname}= url.parse(req.url, true);
-    //print the query details in console
-    console.log(query);
-    console.log(pathname);
+    // //print the query details in console
+    // console.log(query);
+    // console.log(pathname);
 
     
     switch (pathname) {
         case "/": {
-            const bf = await fsPromises.readFile(`${__dirname}/pages/homepage.html`);
+            const bf = await fsPromises.readFile(`${__dirname}/Pages/homePage.html`);
             res.end(bf);
             break;
         }
