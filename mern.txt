@@ -31,3 +31,8 @@ Promise is an object which represents eventual completion or failure of an async
 2-settaled: 
 2.1-fulfilled: operation completed successfully
 2.2-rejected: operation failed
+
+
+//DAY13:-----------------------
+
+Middleware chaining
