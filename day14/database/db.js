@@ -32,17 +32,37 @@ const client = new MongoClient(dbURL, {
     deprecationErrors: true,
   }
 });
-async function run() {
-  try {
-    // Connect the client to the server	(optional starting in v4.7)
-    await client.connect();
-    // Send a ping to confirm a successful connection
-    await client.db("admin").command({ ping: 1 });
-    console.log("Pinged your deployment. You successfully connected to MongoDB!");
-  } finally {
-    // Ensures that the client will close when you finish/error
-    await client.close();
-  }
-}
-run().catch(console.dir);
 
+
+// async function run() {
+//   try {
+//     // Connect the client to the server	(optional starting in v4.7)
+//     // await client.connect();
+//     // Send a ping to confirm a successful connection
+//     // await client.db("admin").command({ ping: 1 });
+
+
+//     //CONNECTING TO our DATABASE
+//     const database = client.db(process.env.DB_NAME)
+//     const product = database.collection("products")
+//    const res = await product.insertOne({name:"sonali", subject:"Mern"})
+//    console.log(res)
+
+
+    // console.log("Successfully connected to MongoDB!");
+//   } finally {
+//     // Ensures that the client will close when you finish/error
+//     await client.close();
+//   }
+// }
+// run().catch(console.dir);
+
+
+const database = client.db(process.env.DB_NAME)
+
+const  productsCollection = database.collection("products")
+
+module.exports={
+  database,
+  productsCollection
+}
