@@ -60,5 +60,48 @@
 
 
 
-const arr =[1,2,3];
-arr.map(console.log);
+// const arr =[1,2,3];
+// arr.map(console.log);
+
+
+
+
+
+
+// //FLAT ARRAY
+// let input = [11,[22],33,[[44,55]]]
+// const doFlat =(arr)=>{
+//   let res = [];
+//   arr.forEach((elem)=>{
+//     if(Array.isArray(elem)){
+//       const tempArr = doFlat(elem);
+//       res = [...res,...tempArr]
+//   }
+//   else{
+//     res.push(elem)
+//   }
+// })
+//  return res;
+
+// }
+// let output = doFlat(input)
+// console.log(output);
+
+
+//HOW TO DO DEEP COPY ans sallow copy OF ARRAY?
+
+//DEEP COPY
+const tv = {
+  name: 'sony',
+  price: 10000,
+  tag: ["tv","sony"]
+}
+
+function deepcopy(input){
+  if(typeof(input)=="object"){
+
+  }
+  else{
+
+  }
+}

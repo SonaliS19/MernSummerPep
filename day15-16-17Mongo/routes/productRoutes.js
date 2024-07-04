@@ -1,5 +1,12 @@
 const express = require("express");
-const { getProducts,createProducts,replaceProducts,deleteProducts,updateProducts,listProducts,checkId } = require("../controllers/productController");
+const {
+   getProducts,
+   createProducts,
+   replaceProducts,
+   deleteProducts,
+   updateProducts,
+   listProducts,
+   checkId } = require("../controllers/productController");
 const productRouter = express.Router()
 
 
@@ -8,9 +15,13 @@ const productRouter = express.Router()
 //   res.send("Done")
 // });
 
-productRouter.route("/list").get(listProducts)
+
 
 productRouter.route("/").get(getProducts).post(createProducts);
+
+productRouter.route("/list").get(listProducts)
+
+
 productRouter.route("/:id").put(checkId, replaceProducts).delete(deleteProducts).patch(checkId,updateProducts);
 
 

@@ -36,3 +36,14 @@ Promise is an object which represents eventual completion or failure of an async
 //DAY13:-----------------------
 
 Middleware chaining
+
+
+//DAY19--------------------------------------------------------------------
+why we need parcel?
+-use to bundle the code for client
+-it will be in dist folder
+-minimise the number of components into 1-2 files
+
+-development dependency- which is not needed to client
+
+package-lock.json: it holds the transitive dependencies(or dependencies of dependencies)

@@ -53,9 +53,19 @@ const getProducts = async(req,res)=>{
 
 
   ////MONGOOSE--------------------------------------------------
-  const products = await productModel.find({}).limit(10);
+  // const products = await productModel.find({}).limit(10);
+
+  const { limit, page } = req.query;
+  const products = await productModel
+      .find()
+      .skip((page - 1) * limit)
+      .limit(limit);
+
+  const countDocuments = await productModel.countDocuments();
   res.send({
     status:"success",
+    results: products.length,
+    totalData: countDocuments,
     data:{
       products,
       },
@@ -91,8 +101,7 @@ const createProducts = async(req,res)=>{
 
 
   //MONGOOS ------------------------------------------------------------------------------
- 
-  //validation
+
  try{
   const body = req.body;
   const newProduct = await productModel.create(body);
@@ -106,16 +115,17 @@ const createProducts = async(req,res)=>{
  }
  catch(err){
     console.log(err);
-    res.status(400);
+    res.status(500);
     res.json({
 
       status:"fail",
       message:"title and price is required",
+      info: err,
 
     });
  }
 
-}
+};
 
 
 
@@ -143,45 +153,20 @@ catch(err){
   res.json({
     status:"fail",
     message:"title and price is required",
-    info:err,
+    info: err,
     });
   }
 
 };
 
-//DELETE--------------------------------------------------
 
-const deleteProducts = async(req,res)=>{
-  try{
-    const {id} = req.params;
-    const body = req.body;
-
-  const newProduct = await productModel.findOneAndDelete({_id:id}, body);  //{new: true}:- for watchiong the new update on put req
-  res.status(200)
-  res.json({
-    status:"success",
-    data:{
-      product:newProduct,
-      },
-      });
-}
-catch(err){
-    console.log(err);
-    res.status(500);
-    res.json({
-      status:"fail",
-      message:"title and price is required",
-      info:err,
-      });
-    }
-}
 
 //Patch PATCH is a method of modifying resources where the client sends partial data that is to be updated without modifying the entire data------------------------------------------------------------------------------------
 const updateProducts = async(req,res)=>{
   try{
     const {id} = req.params;
     const body = req.body;
-
+    body.updatedAt = Date.now();
     const newProduct = await productModel.findOneAndUpdate({_id:id},body,{new: true});
     res.status(200)
     res.json({
@@ -201,33 +186,103 @@ const updateProducts = async(req,res)=>{
   }
 }
 
+//DELETE--------------------------------------------------
 
+const deleteProducts = async(req,res)=>{
+  try{
+    const {id} = req.params;
+    
 
-//LIST PRODUCTS:----------------------------------------------------------
-const listProducts = async(req,res)=>{
-
-  //destructuring + default value
-  const { limit=10, ...filter } = req.query;
-  console.log("filters", filter)
-  
-  // //destructuring
-  // const query = req.query;
-  // console.log(query)
-
-  const pizzaQuery = productModel.find(filter);
-
-  // //if limit is not given in query then take 10 by default
-  // const limitedPizzas= await pizzaQuery.limit(query.limit || 10);
-  const limitedPizzas= await pizzaQuery.limit(limit);
+  await productModel.findOneAndDelete({_id:id});  //{new: true}:- for watchiong the new update on put req
   res.status(200)
   res.json({
     status:"success",
     data:{
-      products:limitedPizzas,
-      }
+      product: null,
+      },
       });
-      
 }
+catch(err){
+    res.status(500);
+    res.json({
+      status:"fail",
+      message:"title and price is required",
+      info:err,
+      });
+    }
+}
+
+//LIST PRODUCTS for pizza dataset:----------------------------------------------------------
+// const listProducts = async(req,res)=>{
+
+//   //destructuring + default value
+//   const { limit=10, ...filter } = req.query;
+//   console.log("filters", filter)
+  
+//   // //destructuring
+//   // const query = req.query;
+//   // console.log(query)
+
+//   const pizzaQuery = productModel.find(filter);
+
+//   // //if limit is not given in query then take 10 by default
+//   // const limitedPizzas= await pizzaQuery.limit(query.limit || 10);
+//   const limitedPizzas= await pizzaQuery.limit(limit);
+//   res.status(200)
+//   res.json({
+//     status:"success",
+//     data:{
+//       products:limitedPizzas,
+//       }
+//       });
+      
+// }
+
+
+
+
+//list custom products ------------------------------------------------------------------
+
+const listProducts = async (req, res) => {
+  try {
+      const { limit = 10, q = "", fields = "", sort = "price", page = 1, ...filters } = req.query;
+      const selectionFields = fields.split("_").join(" ");
+      const sortFields = sort.split("_").join(" ");
+      let productsQuery = productModel.find(filters);
+      // searching functionality
+      productsQuery = productsQuery.where("title").regex(q);
+      // reduce response size and select specific fields
+      productsQuery = productsQuery.select(selectionFields);
+
+      // count the total of result documents
+      const countQuery = productsQuery.clone();
+      const totalData = await countQuery.countDocuments();
+
+      // sorting
+      productsQuery = productsQuery.sort(sortFields);
+
+      // pagination
+      productsQuery = productsQuery.skip((page - 1) * limit);
+      productsQuery = await productsQuery.limit(limit);
+
+      res.json({
+          status: "success",
+          results: productsQuery.length,
+          totalData: totalData,
+          data: {
+              pizzas: productsQuery,
+          },
+      });
+  } catch (err) {
+      res.status(500);
+      res.json({
+          status: "fail",
+          message: "Internal Server Error",
+      });
+  }
+};
+
+
 module.exports ={
   getProducts,
   createProducts,

@@ -2,3 +2,5 @@ node_modules
 try.cpp
 .env
 DS_Store
+dist
+.parcel-cache
