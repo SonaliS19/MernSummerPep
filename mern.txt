@@ -47,3 +47,8 @@ why we need parcel?
 -development dependency- which is not needed to client
 
 package-lock.json: it holds the transitive dependencies(or dependencies of dependencies)
+
+
+//DAY23---------------------------------------------------------------------------
+
+  // "start": "rm -r .parcel-cache && parcel index.html",

@@ -304,11 +304,11 @@
 import ReactDOM from "react-dom/client";
 import "./globalStyles.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import HomePage from "./src/pages/homePage";
-import SearchPage from "./src/pages/amazonSearchPage";
+import HomePage from "./src/Pages/homePage";
+import SearchPage from "./src/Pages/searchPage";
 import SignUp from "./src/Pages/signUp";
 import { useState } from "react";
-import ProductInfo from "./src/pages/productInfo";
+import ProductInfo from "./src/Pages/productInfo";
 import AppContext from "./src/context/appContext";
 
 const parent = document.getElementById("root");
@@ -328,27 +328,30 @@ const categories = [
 
 const App = () => {
     const [searchText, setSearchText] = useState("");
+    const [cart, setCart] = useState([]);
+    const [LoggedInUser, setLoggedInUser]= useState(null);
+
 
     const router = createBrowserRouter([
         {
             path: "/",
-            element: <HomePage />,
+            element: !LoggedInUser ? <SignUp />:<HomePage />
         },
         {
             path: "/search",
-            element: <SearchPage />,
+            element: !LoggedInUser ? <SignUp />:<SearchPage />
         },
         {
             path: "/search/:id",
-            element: <ProductInfo />,
+            element: !LoggedInUser ? <SignUp />:<ProductInfo />
         },
         {
             path: "/signup",
-            element: <SignUp />,
+            element: !LoggedInUser ? <SignUp />:<SignUp />
         },
     ]);
 
-    const [cart, setCart] = useState([]);
+   
     const addToCart = (elem) => {
         console.log(elem);
         const isPresent = cart.findIndex((cI) => cI.id === elem.id);
@@ -373,7 +376,12 @@ const App = () => {
         }
     };
 
+    const appLogin = (user)=>{
+        setLoggedInUser(user);
+    }
+
     const contextValues = {
+        LoggedInUser,
         cart,
         addToCart,
         categories,
@@ -381,11 +389,13 @@ const App = () => {
         setSearchText,
     };
     console.log(cart);
+    console.log("State", LoggedInUser)
     return (
         <AppContext.Provider value={contextValues}>
-            <RouterProvider router={router} />;
+            <RouterProvider router={router} />
         </AppContext.Provider>
     );
 };
 
 root.render(<App />);
+

@@ -1,12 +1,34 @@
 const UserModel = require("../model/userModel");
+//REQUIRING JWT
+const jwt = require("jsonwebtoken");
 
 //Type to find existingUsers
 
-// const findExistingUserUsingEmail = async (email)=>{
-//   const user = await UserModel.findOne({email});
-//   return user;
-// }
+const findExistingUserByEmail = async (email)=>{
+  const user = await UserModel.findOne({email});
+  return user;
+}
 
+//varify password after user verify during login
+const varifyPassword = async(plainPassword, hashedPassword) =>{
+    const isMatch = await bcrypt.compare(plainPassword, hashedPassword);
+    return isMatch;
+}
+
+//JWT AUTHENTICATION--------------------------------------------------------------------------------
+const generateJWToken = (user) => {
+  const token = jwt.sign({
+    exp:120,
+    data:{
+      userid: user._id,
+      email: user.email,
+    }
+   
+  },
+  process.env.JWT_SECRET_KEY
+);
+  return token;
+};
 
 const signUp = async (req, res) => {
   // console.log(req.body);
@@ -68,8 +90,65 @@ const signUp = async (req, res) => {
 
 };
 
-const login = async (req, res) => {};
+
+//LOGIN API
+
+const login = async (req, res) => {
+    try{
+      const {email, password} = req.body;
+      if(!email || !password){
+        res.status(400).json({
+          status: "fail",
+          message: "invalid email or password"
+          });
+          return;
+          }
+
+          const user = await findExistingUserByEmail(email);
+          if(!user){
+            res.status(400).json({
+              status: "fail",
+              message: "User not found"
+              });
+              return;
+              }
+
+          const hashedPassword = user.password;
+          const isPassworCorrect = await varifyPassword(password, hashedPassword);
+          if(!isPassworCorrect){
+            res.status(400).json({
+              status: "fail",
+              message: "Invalid password"
+              });
+              return;
+              }
+
+              res.status(200).json({
+                status: "success",
+                message: "User logged in",
+                data: {
+                  user:{
+                    name: user.name,
+                    email: user.email,
+
+                  }
+                 
+
+                },
+                token: generateJWToken(user)
+              })
+
+    }
+    catch(err){
+      res.status(500).json({
+        status: "fail",
+        message: "server error"
+      })
+    }
+};
 
 module.exports = {
   signUp,
+  login,
 };
+
